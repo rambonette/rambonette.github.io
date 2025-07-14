@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/static/css/main.321f3eac.css",
+    "main.js": "/static/js/main.209af1f3.js",
+    "static/media/rambonette_logo_full_no_bg.png": "/static/media/rambonette_logo_full_no_bg.f579e33db0a4fceaee5c.png",
+    "index.html": "/index.html",
+    "main.321f3eac.css.map": "/static/css/main.321f3eac.css.map",
+    "main.209af1f3.js.map": "/static/js/main.209af1f3.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.321f3eac.css",
+    "static/js/main.209af1f3.js"
+  ]
+}
