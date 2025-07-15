@@ -14,8 +14,10 @@ import {
   Form,
   Icon,
   Button,
+  Image,
 } from "react-bulma-components";
 import logo from "./rambonette_logo_full_no_bg.png";
+import haLogo from "./home-assistant-logomark-with-margins-color-on-light.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import { Fluid } from "@whatisjery/react-fluid-distortion";
@@ -42,6 +44,13 @@ interface SkillsData {
   [category: string]: string[];
 }
 
+interface Contribution {
+  project: string;
+  logo: string;
+  description: string;
+  url: string;
+}
+
 const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState<string>("about");
   const [isMenuActive, setIsMenuActive] = useState<boolean>(false);
@@ -52,6 +61,7 @@ const App: React.FC = () => {
         "about",
         "experience",
         "education",
+        "contributions",
         "skills",
         "contact",
       ];
@@ -206,6 +216,37 @@ const App: React.FC = () => {
     Languages: ["Italian (Native)", "Spanish (Native)", "English (B2)"],
   };
 
+  const contributionsData: Contribution[] = [
+    {
+      project: "Open Telemetry",
+      url: "https://github.com/open-telemetry/opentelemetry.io",
+      description:
+        "Contributed to Node.js implementation of Open Telemetry SDK, a High-quality, ubiquitous, and portable telemetry to enable effective observability.",
+      logo: "https://opentelemetry.io/img/social/logo-wordmark-001.png",
+    },
+    {
+      project: "Organic Maps",
+      url: "https://github.com/organicmaps/organicmaps",
+      description:
+        "Contributed fixes to Organic Maps, a privacy focused gps navigation app based on OSM with offline capabilities.",
+      logo: "https://organicmaps.app/logos/green-on-transparent.svg",
+    },
+    {
+      project: "Chart.js",
+      url: "https://github.com/chartjs/Chart.js",
+      description:
+        "Contributed fixes to Chart.js annotations plugin to make aligment more configurable:",
+      logo: "https://www.chartjs.org/media/logo-title.svg",
+    },
+    {
+      project: "Home Assistant",
+      url: "https://github.com/home-assistant/core",
+      description:
+        "Contributed fixes to device speficic integrations to make Freedompro's device compatible:",
+      logo: haLogo,
+    },
+  ];
+
   return (
     <>
       {/* Navigation */}
@@ -221,19 +262,24 @@ const App: React.FC = () => {
         </Navbar.Brand>
         <Navbar.Menu>
           <Navbar.Container align="left">
-            {["about", "experience", "education", "skills", "contact"].map(
-              (section) => (
-                <Navbar.Item
-                  key={section}
-                  className={`navbar-item-custom ${
-                    activeSection === section ? "is-active" : ""
-                  }`}
-                  onClick={() => scrollToSection(section)}
-                >
-                  {section.charAt(0).toUpperCase() + section.slice(1)}
-                </Navbar.Item>
-              )
-            )}
+            {[
+              "about",
+              "experience",
+              "education",
+              "contributions",
+              "skills",
+              "contact",
+            ].map((section) => (
+              <Navbar.Item
+                key={section}
+                className={`navbar-item-custom ${
+                  activeSection === section ? "is-active" : ""
+                }`}
+                onClick={() => scrollToSection(section)}
+              >
+                {section.charAt(0).toUpperCase() + section.slice(1)}
+              </Navbar.Item>
+            ))}
           </Navbar.Container>
         </Navbar.Menu>
       </Navbar>
@@ -382,8 +428,44 @@ const App: React.FC = () => {
         </Container>
       </Section>
 
+      {/* Contributions */}
+      <Section id="contributions" className="has-background-light">
+        <Container>
+          <Heading size={2} className="section-title">
+            Contributions
+          </Heading>
+          <Columns className="is-multiline">
+            {contributionsData.map(({ project, url, description, logo }) => (
+              <Columns.Column key={project} size={3}>
+                <Card
+                  className="card-custom skill-card"
+                  onClick={() =>
+                    window.open(url, "_blank", "noopener,noreferrer")
+                  }
+                >
+                  <Card.Header>
+                    <Card.Header.Icon>
+                      <Image
+                        size={128}
+                        src={logo}
+                        style={{ display: "grid" }}
+                        className="is-align-items-center"
+                      />
+                    </Card.Header.Icon>
+                    <Card.Header.Title textSize={5}>
+                      {project}
+                    </Card.Header.Title>
+                  </Card.Header>
+                  <Card.Content>{description}</Card.Content>
+                </Card>
+              </Columns.Column>
+            ))}
+          </Columns>
+        </Container>
+      </Section>
+
       {/* Skills Section */}
-      <Section id="skills" className="has-background-light">
+      <Section id="skills">
         <Container>
           <Heading size={2} className="section-title">
             Skills
@@ -416,7 +498,7 @@ const App: React.FC = () => {
       </Section>
 
       {/* Contact Section */}
-      <Section id="contact">
+      <Section id="contact" className="has-background-light">
         <Container>
           <Heading size={2} className="section-title">
             Contact
@@ -438,6 +520,7 @@ const App: React.FC = () => {
                           <a
                             href="https://www.linkedin.com/in/ramiro-cordero-2134261a5/"
                             target="_blank"
+                            rel="noreferrer"
                           >
                             Ramiro Cordero
                           </a>
@@ -453,6 +536,7 @@ const App: React.FC = () => {
                           <a
                             href="https://github.com/rambonette"
                             target="_blank"
+                            rel="noreferrer"
                           >
                             @rambonette
                           </a>
