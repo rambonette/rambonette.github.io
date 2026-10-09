@@ -95,11 +95,18 @@ const App: React.FC = () => {
 
   const experienceData: ExperienceItem[] = [
     {
+      title: "Senior Backend Developer – Industrial Controller",
+      company: "Complife Srl",
+      date: "Aug. 2025 – Present",
+      description:
+        "Working on a multi-site Laboratory Information Management System (LIMS). First task was stabilizing it in production: fixed the infrastructure and tracked down several memory leaks. Since then I work on new features but mostly on the software lifecycle. Restored and extended the CI/CD pipelines with automated test stages, and integrated AI agents into the pull request workflow for automatic regression checks and requirement compliance, connecting them to Jira and Bitbucket through MCP. Introduced the team to a controllable, observable and sustainable way of working with AI, mapping the repositories with Markdown context files to improve the quality of the agents output. Developed an integration middleware that abstracts the communication between the lab software ecosystem and the ERP (Microsoft Dynamics 365 Business Central). Involved in feature planning and technical refinement: turning PM requirements into task breakdowns with estimates and dependencies.",
+    },
+    {
       title: "Lead Developer",
       company: "Freedompro Srl",
-      date: "Jul. 2024 – Present",
+      date: "Jul. 2024 – Jul. 2025",
       description:
-        "Promoted to Lead Developer while continuing backend specialization. Responsible for planning, managing, and coordinating activities across Frontend, Firmware, and Backend teams. Serving as Scrum Master and developing CI/CD pipelines for Google Play Console and App Store Connect. Actively involved in IT recruitment and working directly with PMs, Business Analysts, and UX/UI designers.",
+        "Promoted to Lead Developer while continuing backend specialization. Responsible for planning, managing, and coordinating activities across Frontend, Firmware, and Backend teams. Served as Scrum Master and developed CI/CD pipelines for Google Play Console and App Store Connect. Actively involved in IT recruitment and working directly with PMs, Business Analysts, and UX/UI designers.",
     },
     {
       title: "Senior Backend Developer",
@@ -212,11 +219,26 @@ const App: React.FC = () => {
       "App Store Connect",
       "Google Play Console",
     ],
+    "DevOps & AI": [
+      "CI/CD",
+      "Automated Testing",
+      "Bitbucket",
+      "Jira",
+      "MCP",
+      "AI Agents",
+    ],
     Databases: ["MongoDB", "PostgreSQL", "SQL", "GraphQL"],
     Languages: ["Italian (Native)", "Spanish (Native)", "English (B2)"],
   };
 
   const contributionsData: Contribution[] = [
+    {
+      project: "Espruino",
+      url: "https://github.com/espruino/BangleApps/pull/4350",
+      description:
+        "Added GPX route support to the OpenStreetMap app for Bangle.js smartwatches: maps can be uploaded along a route, with the route drawn on them.",
+      logo: "https://github.com/espruino.png",
+    },
     {
       project: "Open Telemetry",
       url: "https://github.com/open-telemetry/opentelemetry.io",
@@ -235,14 +257,14 @@ const App: React.FC = () => {
       project: "Chart.js",
       url: "https://github.com/chartjs/Chart.js",
       description:
-        "Contributed fixes to Chart.js annotations plugin to make aligment more configurable:",
+        "Contributed fixes to Chart.js annotations plugin to make aligment more configurable.",
       logo: "https://www.chartjs.org/media/logo-title.svg",
     },
     {
       project: "Home Assistant",
       url: "https://github.com/home-assistant/core",
       description:
-        "Contributed fixes to device speficic integrations to make Freedompro's device compatible:",
+        "Contributed fixes to device speficic integrations to make Freedompro's device compatible.",
       logo: haLogo,
     },
   ];
@@ -312,7 +334,7 @@ const App: React.FC = () => {
           <Container className="has-text-centered">
             <Heading size={1}>Ramiro Cordero</Heading>
             <Heading subtitle size={3}>
-              Senior Backend & Lead Developer
+              Senior Backend Developer
             </Heading>
             <p className="is-size-5" style={{ opacity: 0.9 }}>
               Full Stack Developer specializing in TypeScript, Node.js, and
@@ -339,14 +361,16 @@ const App: React.FC = () => {
                         creating robust and efficient server-side applications.
                         Although my primary programming language is C, I mainly
                         work with technologies like Node.js, NestJS, MongoDB,
-                        and Redis. My work involves implementing the Matter
-                        protocol for IoT, an open-source connectivity standard
-                        that ensures seamless and secure communication between
-                        smart home devices, regardless of manufacturer. I also
-                        leverage deep knowledge of x.509 certificates to ensure
-                        secure communications. I'm passionate and actively
-                        involved in open source projects such as InfiniTime,
-                        Home Assistant, and ebay-node-api, which allow me to
+                        and Redis. Today I work on laboratory management
+                        software, keeping it stable in production, integrating
+                        it with ERP systems and bringing AI agents into the
+                        development lifecycle in a controlled and observable
+                        way. Before that I worked on IoT, implementing the
+                        Matter protocol for smart home devices and relying on
+                        x.509 certificates for secure communications. I'm
+                        passionate and actively involved in open source
+                        projects such as Espruino, InfiniTime, Home Assistant,
+                        and ebay-node-api, which allow me to
                         collaborate with and learn from the global developer
                         community. I thrive on delivering high-quality, scalable
                         solutions and am committed to continuously learning and
@@ -443,20 +467,31 @@ const App: React.FC = () => {
                     window.open(url, "_blank", "noopener,noreferrer")
                   }
                 >
-                  <Card.Header>
-                    <Card.Header.Icon>
-                      <Image
-                        size={128}
-                        src={logo}
-                        style={{ display: "grid" }}
-                        className="is-align-items-center"
-                      />
-                    </Card.Header.Icon>
-                    <Card.Header.Title textSize={5}>
-                      {project}
-                    </Card.Header.Title>
-                  </Card.Header>
-                  <Card.Content>{description}</Card.Content>
+                  <Card.Content>
+                    <Columns
+                      vCentered={true}
+                      centered={true}
+                      className="is-gapless"
+                    >
+                      <Columns.Column narrow={true}>
+                        <Image
+                          size={64}
+                          src={logo}
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                          }}
+                        />
+                      </Columns.Column>
+                      <Columns.Column className="has-text-centered">
+                        <Heading size={6}>{project}</Heading>
+                      </Columns.Column>
+                    </Columns>
+                    <Columns>
+                      <Columns.Column>{description}</Columns.Column>
+                    </Columns>
+                  </Card.Content>
                 </Card>
               </Columns.Column>
             ))}
